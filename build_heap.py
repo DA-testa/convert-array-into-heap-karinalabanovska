@@ -3,8 +3,27 @@
 
 def build_heap(data):
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
+    n = len(data)
+    
+    last_non_leaf = (n-2)//2
+    
+    for i in range(last_non_leaf, -1, -1):
+        min_idx = i
+        left = 2*i + 1
+        right = 2*i +2
+        
+        if left < n and data[left] < data[min_idx]:
+            min_idx = left
+        if right < n and data[right] < data[min_idx]:
+            min_idx = right
+            
+        if i != min_idx:
+            data[i], data[min_idx] = data[min_idx], data[i]
+            swaps.append((i, min_idx))
+            
+            child_swaps = build_heap(data[min_idx:])
+            swaps += [(i+cs[0], i+cs[1]) for cs in child_swaps]
+       
 
 
     return swaps
