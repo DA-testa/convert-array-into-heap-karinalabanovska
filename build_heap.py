@@ -34,7 +34,18 @@ def main():
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-
+    mode = input()
+    if "F" in mode:
+        filename = input()
+        (int, f.readline().split()))
+        
+        else:
+            print("error")
+    elif "I" in mode:
+        n = int(input())
+        data = list(map(int, input().split()))
+    else:
+        print("invalid mode")
    
 
     # checks if lenght of data is the same as the said lenght
@@ -46,18 +57,8 @@ def main():
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
- mode = input()
-    if "F" in mode:
-         filename = input()
+    print(f"Number of swaps made: {len(swaps)}")
     
-    else:
-            print("error")
-    elif "I" in mode:
-        n = int(input())
-        parentOfNode = list(map(int, input().split()))
-    else:
-        print("invalid mode")
-    print(swaps(n, parentOfNode))
     # input from keyboard
     #n = int(input())
     #data = list(map(int, input().split()))
