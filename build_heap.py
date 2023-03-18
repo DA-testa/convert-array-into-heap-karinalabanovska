@@ -4,27 +4,27 @@
 def build_heap(data):
     swaps = []
     n = len(data)
-    
-    last_non_leaf = (n-2)//2
-    
-    for i in range(last_non_leaf, -1, -1):
+
+    def sift_down(i):
+        nonlocal swaps
         min_idx = i
         left = 2*i + 1
         right = 2*i +2
-        
+
         if left < n and data[left] < data[min_idx]:
             min_idx = left
         if right < n and data[right] < data[min_idx]:
             min_idx = right
-            
+
         if i != min_idx:
             data[i], data[min_idx] = data[min_idx], data[i]
             swaps.append((i, min_idx))
-            
-            child_swaps = build_heap(data[min_idx:])
-            swaps += [(i+cs[0], i+cs[1]) for cs in child_swaps]
-       
+            sift_down(min_idx)
 
+    last_non_leaf = (n-2)//2
+
+    for i in range(last_non_leaf, -1, -1):
+        sift_down(i)
 
     return swaps
 
@@ -35,37 +35,30 @@ def main():
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
     
-    mode = input()
-    if "F" in mode:
-        filename = input()
-        (int, f.readline().split()))
-        
-        else:
-            print("error")
-            
-    elif "I" in mode:
-        n = int(input())
-        data = list(map(int, input().split()))
+    mode = input().strip()
+    if mode == 'F':
+        filename = input().strip()
+        with open(filename) as f:
+            n = int(f.readline().strip())
+            data = list(map(int, f.readline().strip().split()))
+    elif mode == 'I':
+        n = int(input().strip())
+        data = list(map(int, input().strip().split()))
     else:
-        print("invalid mode")
-   
+        print("Invalid mode")
+        return
 
-    # checks if lenght of data is the same as the said lenght
+    assert 1 <= n <= 100000
     assert len(data) == n
+    assert all(0 <= ai <= 10**9 for ai in data)
+    assert len(set(data)) == n
 
-    # calls function to assess the data 
-    # and give back all swaps
     swaps = build_heap(data)
 
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-    
-    # input from keyboard
-    #n = int(input())
-    #data = list(map(int, input().split()))
+    m = len(swaps)
+    assert 0 <= m <= 4*n
 
-    # output all swaps
-    print(len(swaps))
+    print(m)
     for i, j in swaps:
         print(i, j)
 
