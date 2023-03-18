@@ -34,6 +34,7 @@ def main():
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
+    
     mode = input()
     if "F" in mode:
         filename = input()
@@ -41,11 +42,13 @@ def main():
         
         else:
             print("error")
+            
     elif "I" in mode:
         n = int(input())
         data = list(map(int, input().split()))
     else:
         print("invalid mode")
+    print(build_heap(n, data))
    
 
     # checks if lenght of data is the same as the said lenght
