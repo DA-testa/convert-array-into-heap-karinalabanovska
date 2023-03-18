@@ -48,7 +48,6 @@ def main():
         data = list(map(int, input().split()))
     else:
         print("invalid mode")
-    print(build_heap(n, data))
    
 
     # checks if lenght of data is the same as the said lenght
@@ -60,7 +59,6 @@ def main():
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
-    print(f"Number of swaps made: {len(swaps)}")
     
     # input from keyboard
     #n = int(input())
