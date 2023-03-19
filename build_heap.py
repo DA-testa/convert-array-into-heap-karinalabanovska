@@ -35,32 +35,26 @@ def main():
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
     
-    mode = input().strip()
-    if mode == 'F':
-        filename = input().strip()
-        with open(filename) as f:
+    n = input().strip
+    if n == 'I':
+        n = int(input())
+        data = list(map(int, input().split()))
+        assert len(data) == n
+        swaps = build_heap(data)
+        print(len(swaps))
+        for i, j in swaps:
+            print(i, j)
+            
+    elif n == 'F':
+        file = input()
+        with open("tests/" + file, 'r') as f:
             n = int(f.readline().strip())
-            data = list(map(int, f.readline().strip().split()))
-    elif mode == 'I':
-        n = int(input().strip())
-        data = list(map(int, input().strip().split()))
-    else:
-        print("Invalid mode")
-        return
-
-    assert 1 <= n <= 100000
-    assert len(data) == n
-    assert all(0 <= ai <= 10**9 for ai in data)
-    assert len(set(data)) == n
-
-    swaps = build_heap(data)
-
-    m = len(swaps)
-    assert 0 <= m <= 4*n
-
-    print(m)
-    for i, j in swaps:
-        print(i, j)
+            data = list(map(int, f.readline().split()))
+            assert len(data) == n
+            swaps = build_heap(data)
+            print(len(swaps))
+            for i, j in swaps:
+                print(i, j)
 
 
 if __name__ == "__main__":
