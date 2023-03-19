@@ -9,7 +9,7 @@ def build_heap(data):
         nonlocal swaps
         min_idx = i
         left = 2*i + 1
-        right = 2*i +2
+        right = 2*i + 2
 
         if left < n and data[left] < data[min_idx]:
             min_idx = left
